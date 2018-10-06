@@ -80,7 +80,7 @@ def main():
   else:  
     print ("Successfully created the directory %s " % dataDir)
 
-  try
+  try:
     open(filePath, "wb").write(json.dumps(tmpObj))
   except:
     print "Error writing results..."
