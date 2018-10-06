@@ -19,7 +19,7 @@ def mkEpoch(inputDatestamp, inputTimestamp):
 	inputDatestamp = inputDatestamp.replace("/", "-")
 	inputStr = inputDatestamp + " " + inputTimestamp
 
-	datetimeObj = datetime.datetime.strptime(inputStr, "%Y-%m-%d %H:%M:%S.%f")
+	datetimeObj = datetime.datetime.strptime(inputStr, "%Y-%m-%d %H:%M:%S")
 	epochVal = calendar.timegm(datetimeObj.timetuple())
 	epochString = str(epochVal)
 	return epochString
