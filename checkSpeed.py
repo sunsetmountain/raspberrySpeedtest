@@ -38,14 +38,16 @@ def main():
   freq[0] = freq[0].replace(',', '.')
   signal[0] = signal[0].replace(',', '.')
   bitrate[0] = bitrate[0].replace(',', '.')
-      
+
+  hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read()
+
   try:
     if os.stat('/home/pi/speedtestResults/speedtest.csv').st_size == 0:
-        print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s)'
+        print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s), Hostname'
   except:
     pass
 
-  print '{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0])
+  print '{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
 
 if __name__ == '__main__':
 	main()
