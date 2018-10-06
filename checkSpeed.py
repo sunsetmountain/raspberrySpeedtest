@@ -47,7 +47,7 @@ def main():
   except:
     pass
 
-  print '{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  print '{},{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
 
 if __name__ == '__main__':
 	main()
