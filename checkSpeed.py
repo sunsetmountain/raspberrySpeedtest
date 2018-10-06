@@ -91,6 +91,7 @@ def main():
   try:
     open(filePath, "wb").write(json.dumps(tmpObj))
     print "Successfully wrote results to " + filePath
+    print "Results: " + tmpObj["results"]
   except:
     print "Error writing results..."
     pass
