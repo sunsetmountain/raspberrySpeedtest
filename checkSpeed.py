@@ -41,7 +41,7 @@ def main():
       
   try:
     if os.stat('/home/pi/speedtestResults/speedtest.csv').st_size == 0:
-        print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency,Signal,Bitrate'
+        print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s)'
   except:
     pass
 
