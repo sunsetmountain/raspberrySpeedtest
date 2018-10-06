@@ -56,9 +56,5 @@ def main():
 
   print '{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0])
 
-  except Exception,e:
-    print e
-    quit()
-
 if __name__ == '__main__':
 	main()
