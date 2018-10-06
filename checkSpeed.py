@@ -57,7 +57,7 @@ def main():
 
   tmpObj = {}
   tmpObj["results"] = list2obj(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
-  filePath = dataDir + "/" + str(currentData) + "-" + str(currentTime) + "-" + hostname + ".json"
+  filePath = dataDir + "/" + str(currentDate) + "-" + str(currentTime) + "-" + hostname + ".json"
 
   print tmpObj["results"]
   try:
