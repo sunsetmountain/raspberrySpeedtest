@@ -15,6 +15,35 @@ me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this 
 
 dataDir = "/home/pi/speedtestResults"
 
+def list2obj(rawList):
+	outputObj = {}
+	outputObj["messageType"] = rawList[0]
+	outputObj["transmissionType"] = rawList[1]
+	outputObj["sessionId"] = rawList[2]
+	outputObj["aircraftId"] = rawList[3]
+	outputObj["hexIdent"] = rawList[4]
+	outputObj["flightId"] = rawList[5]
+	outputObj["loggedDate"] = rawList[6]
+	outputObj["loggedTime"] = rawList[7]
+# outputObj["loggedEpoch"] = mkEpoch(str(rawList[6]), str(rawList[7]))
+	outputObj["generatedDate"] = rawList[8]
+	outputObj["generatedTime"] = rawList[9]
+#	outputObj["generatedEpoch"] = mkEpoch(str(rawList[8]), str(rawList[9]))
+	outputObj["callsign"] = rawList[10]
+	outputObj["altitude"] = rawList[11]
+	outputObj["groundSpeed"] = rawList[12]
+	outputObj["track"] = rawList[13]
+	outputObj["lat"] = rawList[14]
+	outputObj["lon"] = rawList[15]
+	outputObj["verticalRate"] = rawList[16]
+	outputObj["squawk"] = rawList[17]
+	outputObj["alert"] = rawList[18]
+	outputObj["emergency"] = rawList[19]
+	outputObj["spi"] = rawList[20]
+	outputObj["onGround"] = rawList[21]
+	outputObj["parsedTime"] = rawList[22]
+	return outputObj
+
 def main():
   currentDate = datetime.datetime.utcnow().strftime('%Y-%m-%d')
   currentTime = datetime.datetime.utcnow().strftime('%H:%M:%S')
@@ -41,13 +70,24 @@ def main():
 
   hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read()
 
+  tmpObj = {}
+  tmpObj["results"] = list2obj(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  filePath = dataDir + "/" + str(currentData) + "-" + str(currentTime) + "-" + hostname + ".json"
+
+  print tmpObj["results"]
   try:
-    if os.stat('/home/pi/speedtestResults/speedtest.csv').st_size == 0:
-        print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s), Hostname'
+    open(filePath, "wb").write(json.dumps(tmpObj))
   except:
+    print "Error writing results..."
     pass
 
-  print '{},{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  #try:
+  #  if os.stat('/home/pi/speedtestResults/speedtest.csv').st_size == 0:
+  #      print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s), Hostname'
+  #except:
+  #  pass
+
+  #print '{},{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
 
 if __name__ == '__main__':
 	main()
