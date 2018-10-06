@@ -81,7 +81,7 @@ def main():
  	try:
  	   os.mkdir(dataDir)
 	except OSError:  
- 	   print ("Results directory exists")
+ 	   pass
 	else:  
  	   print ("Successfully created the directory %s " % dataDir)
 
