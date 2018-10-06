@@ -12,4 +12,4 @@ sudo pip install tendo
 # Add startup commands to the end of .profile
 echo "# export GOOGLE_APPLICATION_CREDENTIALS='/home/pi/FILENAME.json'"
 echo "python /home/pi/raspberrySpeedtest/checkSpeed.py &" >> /home/pi/.profile
-echo "python /home/pi/raspberrySpeedtest/batchGCS.py &" >> /home/pi/.profile
+echo "# python /home/pi/raspberrySpeedtest/batchGCS.py &" >> /home/pi/.profile
