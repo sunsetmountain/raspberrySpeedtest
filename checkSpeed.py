@@ -55,7 +55,7 @@ def main():
   signal[0] = signal[0].replace(',', '.')
   bitrate[0] = bitrate[0].replace(',', '.')
 
-  hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read()
+  hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read().rstrip()
 
   tmpObj = {}
   tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
