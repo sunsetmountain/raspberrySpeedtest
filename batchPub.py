@@ -58,7 +58,7 @@ def main():
                                         os.remove(filePath)
                         else:
                                 print "No messages to send..."
-                        time.sleep(2)
+                        time.sleep(60)
 
                 except KeyboardInterrupt:
                         quit()
