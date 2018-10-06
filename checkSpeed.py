@@ -70,7 +70,8 @@ def main():
   hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read().rstrip()
 
   tmpObj = {}
-  tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  tmpObj = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  #tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
   #print tmpObj["results"]
 
   #Create a unique filename to write to
