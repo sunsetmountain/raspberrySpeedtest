@@ -38,10 +38,10 @@ def main():
   upload[0] = upload[0].replace(',', '.')
   
   wifiResponse = subprocess.Popen('iw dev wlan0 link', shell=True, stdout=subprocess.PIPE).stdout.read()
-  ssid = re.findall('SSID:\s(.*?)\s', response, re.MULTILINE)
-  freq = re.findall('freq:\s(.*?)\s', response, re.MULTILINE)
-  signal = re.findall('signal:\s(.*?)\s', response, re.MULTILINE)
-  bitrate = re.findall('tx bitrate:\s(.*?)\s', response, re.MULTILINE)
+  ssid = re.findall('SSID:\s(.*?)\s', wifiResponse, re.MULTILINE)
+  freq = re.findall('freq:\s(.*?)\s', wifiResponse, re.MULTILINE)
+  signal = re.findall('signal:\s(.*?)\s', wifiResponse, re.MULTILINE)
+  bitrate = re.findall('tx bitrate:\s(.*?)\s', wifiResponse, re.MULTILINE)
 
   ssid[0] = ssid[0].replace(',', '.')
   freq[0] = freq[0].replace(',', '.')
