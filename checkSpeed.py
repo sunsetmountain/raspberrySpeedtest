@@ -15,6 +15,15 @@ me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this 
 
 dataDir = "/home/pi/speedtestResults"
 
+def mkEpoch(inputDatestamp, inputTimestamp):
+	inputDatestamp = inputDatestamp.replace("/", "-")
+	inputStr = inputDatestamp + " " + inputTimestamp
+
+	datetimeObj = datetime.datetime.strptime(inputStr, "%Y-%m-%d %H:%M:%S.%f")
+	epochVal = calendar.timegm(datetimeObj.timetuple())
+	epochString = str(epochVal)
+	return epochString
+
 def list2obj(timestamp, currentDate, currentTime, ping, download, upload, ssid, freq, signal, bitrate, hostname):
 	outputObj = {}
 	outputObj["timestamp"] = timestamp
@@ -59,11 +68,19 @@ def main():
 
   tmpObj = {}
   tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
-  filePath = dataDir + "/" + str(currentDate) + "-" + str(currentTime) + "-" + hostname + ".json"
+  filename = mkEpoch(str(currentDate), str(currentTime)) + ".json"
+  filePath = dataDir + "/" + filename + "-" + hostname + ".json"
   print filePath
 	
   print tmpObj["results"]
   try:
+    os.mkdir(dataDir)
+  except OSError:  
+    print ("Creation of the directory %s failed" % dataDir)
+  else:  
+    print ("Successfully created the directory %s " % dataDir)
+
+  try
     open(filePath, "wb").write(json.dumps(tmpObj))
   except:
     print "Error writing results..."
