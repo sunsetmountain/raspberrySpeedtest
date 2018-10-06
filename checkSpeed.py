@@ -15,15 +15,6 @@ me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this 
 
 dataDir = "/home/pi/speedtestResults"
 
-def mkEpoch(inputDatestamp, inputTimestamp):
-	inputDatestamp = inputDatestamp.replace("/", "-")
-	inputStr = inputDatestamp + " " + inputTimestamp
-
-	datetimeObj = datetime.datetime.strptime(inputStr, "%Y-%m-%d %H:%M:%S.%f")
-	epochVal = calendar.timegm(datetimeObj.timetuple())
-
-	return epochVal
-
 def main():
   currentDate = datetime.datetime.utcnow().strftime('%Y-%m-%d')
   currentTime = datetime.datetime.utcnow().strftime('%H:%M:%S')
