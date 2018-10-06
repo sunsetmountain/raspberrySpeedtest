@@ -13,7 +13,7 @@ from tendo import singleton
 
 me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this script is already running
 
-dataDir = "/home/pi/speedtestResults"
+dataDir = "/home/pi/raspberrySpeedtest/speedtestResults"
 
 def mkEpoch(inputDatestamp, inputTimestamp):
 	inputDatestamp = inputDatestamp.replace("/", "-")
@@ -76,7 +76,7 @@ def main():
   try:
     os.mkdir(dataDir)
   except OSError:  
-    print ("Creation of the directory %s failed" % dataDir)
+    #Directory already exists
   else:  
     print ("Successfully created the directory %s " % dataDir)
 
@@ -85,14 +85,6 @@ def main():
   except:
     print "Error writing results..."
     pass
-
-  #try:
-  #  if os.stat('/home/pi/speedtestResults/speedtest.csv').st_size == 0:
-  #      print 'Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s),SSID,Frequency (MHz),Signal (dBm),Bitrate (MBit/s), Hostname'
-  #except:
-  #  pass
-
-  #print '{},{},{},{},{},{},{},{},{},{}'.format(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
 
 if __name__ == '__main__':
 	main()
