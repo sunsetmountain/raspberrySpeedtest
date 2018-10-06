@@ -15,33 +15,18 @@ me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this 
 
 dataDir = "/home/pi/speedtestResults"
 
-def list2obj(rawList):
+def list2obj(currentDate, currentTime, ping, download, upload, ssid, freq, signal, bitrate, hostname):
 	outputObj = {}
-	outputObj["messageType"] = rawList[0]
-	outputObj["transmissionType"] = rawList[1]
-	outputObj["sessionId"] = rawList[2]
-	outputObj["aircraftId"] = rawList[3]
-	outputObj["hexIdent"] = rawList[4]
-	outputObj["flightId"] = rawList[5]
-	outputObj["loggedDate"] = rawList[6]
-	outputObj["loggedTime"] = rawList[7]
-# outputObj["loggedEpoch"] = mkEpoch(str(rawList[6]), str(rawList[7]))
-	outputObj["generatedDate"] = rawList[8]
-	outputObj["generatedTime"] = rawList[9]
-#	outputObj["generatedEpoch"] = mkEpoch(str(rawList[8]), str(rawList[9]))
-	outputObj["callsign"] = rawList[10]
-	outputObj["altitude"] = rawList[11]
-	outputObj["groundSpeed"] = rawList[12]
-	outputObj["track"] = rawList[13]
-	outputObj["lat"] = rawList[14]
-	outputObj["lon"] = rawList[15]
-	outputObj["verticalRate"] = rawList[16]
-	outputObj["squawk"] = rawList[17]
-	outputObj["alert"] = rawList[18]
-	outputObj["emergency"] = rawList[19]
-	outputObj["spi"] = rawList[20]
-	outputObj["onGround"] = rawList[21]
-	outputObj["parsedTime"] = rawList[22]
+	outputObj["collectiondate"] = currentDate
+	outputObj["collectiontime"] = currentTime
+	outputObj["ping"] = ping
+	outputObj["download"] = download
+	outputObj["upload"] = upload
+	outputObj["ssid"] = ssid
+	outputObj["frequency"] = freq
+	outputObj["signal"] = signal
+	outputObj["bitrate"] = bitrate
+	outputObj["hostname"] = hostname
 	return outputObj
 
 def main():
