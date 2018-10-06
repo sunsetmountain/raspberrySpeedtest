@@ -15,8 +15,9 @@ me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this 
 
 dataDir = "/home/pi/speedtestResults"
 
-def list2obj(currentDate, currentTime, ping, download, upload, ssid, freq, signal, bitrate, hostname):
+def list2obj(timestamp, currentDate, currentTime, ping, download, upload, ssid, freq, signal, bitrate, hostname):
 	outputObj = {}
+	outputObj["timestamp"] = timestamp
 	outputObj["collectiondate"] = currentDate
 	outputObj["collectiontime"] = currentTime
 	outputObj["ping"] = ping
@@ -32,6 +33,7 @@ def list2obj(currentDate, currentTime, ping, download, upload, ssid, freq, signa
 def main():
   currentDate = datetime.datetime.utcnow().strftime('%Y-%m-%d')
   currentTime = datetime.datetime.utcnow().strftime('%H:%M:%S')
+  timestamp = str(currentDate) + " " + str(currentTime)
   response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 
   ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
@@ -56,9 +58,10 @@ def main():
   hostname = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read()
 
   tmpObj = {}
-  tmpObj["results"] = list2obj(currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
+  tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
   filePath = dataDir + "/" + str(currentDate) + "-" + str(currentTime) + "-" + hostname + ".json"
-
+  print filePath
+	
   print tmpObj["results"]
   try:
     open(filePath, "wb").write(json.dumps(tmpObj))
