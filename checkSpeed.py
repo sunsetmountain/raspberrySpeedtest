@@ -68,7 +68,7 @@ def main():
 
   tmpObj = {}
   tmpObj["results"] = list2obj(timestamp, currentDate, currentTime, ping[0], download[0], upload[0], ssid[0], freq[0], signal[0], bitrate[0], hostname)
-  filename = mkEpoch(str(currentDate), str(currentTime)) + ".json"
+  filename = mkEpoch(str(currentDate), str(currentTime))
   filePath = dataDir + "/" + filename + "-" + hostname + ".json"
   print filePath
 	
@@ -76,7 +76,7 @@ def main():
   try:
     os.mkdir(dataDir)
   except OSError:  
-    pring ("Results directory exists")
+    print ("Results directory exists")
   else:  
     print ("Successfully created the directory %s " % dataDir)
 
