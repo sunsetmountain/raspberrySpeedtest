@@ -1,10 +1,10 @@
 import os
 import time
-from google.cloud import pubsub
+from google.cloud import pubsub_v1
 from oauth2client.service_account import ServiceAccountCredentials
 from tendo import singleton
 
-me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this script is already running
+me = singleton.SingleInstance() # will sys.exit(-1) if another instance of this script$
 
 dataDir = "/home/pi/raspberrySpeedtest/speedtestResults"
 keyfile = "/home/pi/enterYourKeyfileName.json" #change to your keyfile name
@@ -19,16 +19,14 @@ def publishBatch(msgList):
 
   #credentials = GoogleCredentials.get_application_default()
 
-  pubsubClient = pubsub.Client(
-    project="[projectName]"
-  )
+  publisher = pubsub_v1.PublisherClient()
+  project="enter-your-project-name" #change to your project name
+  topic_name = "speedtestresults" #change to your PubSub topic name
+  topic_path = publisher.topic_path(project, topic_name)
 
-  topicName = "speedtestresults"
-  topicObj = pubsubClient.topic(topicName)
-  with topicObj.batch() as batchObj:
-    for eachItem in msgList:
-      eachItem = eachItem.encode("utf-8")
-      batchObj.publish(eachItem)
+  for eachItem in msgList:
+    eachItem = eachItem.encode("utf-8")
+    publisher.publish(topic_path, data=eachItem)
 
   return
 
