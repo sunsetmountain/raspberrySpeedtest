@@ -23,7 +23,7 @@ def publishBatch(msgList):
     project="[projectName]"
   )
 
-  topicName = "raw-speedtest-data"
+  topicName = "speedtestresults"
   topicObj = pubsubClient.topic(topicName)
   with topicObj.batch() as batchObj:
     for eachItem in msgList:
