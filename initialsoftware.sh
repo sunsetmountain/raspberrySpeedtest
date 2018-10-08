@@ -11,6 +11,7 @@ sudo pip install tendo
 
 # Install Google Cloud packages
 sudo pip install --upgrade google-cloud-storage
+sudo pip install --upgrade google-cloud-pubsub
 sudo pip install --upgrade oauth2client
 
 # Create a data directory
