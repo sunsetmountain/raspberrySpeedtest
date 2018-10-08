@@ -20,7 +20,7 @@ def publishBatch(msgList):
   #credentials = GoogleCredentials.get_application_default()
 
   publisher = pubsub_v1.PublisherClient()
-  project="enter-your-project-name" #change to your project name
+  project="your-project-name" #change to your project name
   topic_name = "speedtestresults" #change to your PubSub topic name
   topic_path = publisher.topic_path(project, topic_name)
 
