@@ -21,4 +21,4 @@ mkdir speedtestResults
 # Add startup commands to the end of .profile
 echo "# export GOOGLE_APPLICATION_CREDENTIALS='/home/pi/FILENAME.json'" >> /home/pi/.profile
 echo "(sleep 15 && python /home/pi/raspberrySpeedtest/checkSpeed.py) &" >> /home/pi/.profile
-echo "# (sleep 20 && python /home/pi/raspberrySpeedtest/batchGCS.py) &" >> /home/pi/.profile
+echo "# (sleep 20 && python /home/pi/raspberrySpeedtest/batchPub.py) &" >> /home/pi/.profile
