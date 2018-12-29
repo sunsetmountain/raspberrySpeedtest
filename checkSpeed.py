@@ -58,11 +58,11 @@ def main():
 
 	#Collect wifi information
 	wifiResponse = subprocess.Popen('iw dev wlan0 link', shell=True, stdout=subprocess.PIPE).stdout.read()
-	if wifiResponse == "Not connected.":
-		ssid = "lan0"
-		freq = "0"
-		signal = "0"
-		bitrate = "0"
+	if wifiResponse[0:14] == "Not connected.":
+		ssid = ["lan0"]
+		freq = ["0"]
+		signal= ["0"]
+		bitrate = ["0"]
 	else:
 		ssid = re.findall('SSID:\s(.*?)\s', wifiResponse, re.MULTILINE)
 		freq = re.findall('freq:\s(.*?)\s', wifiResponse, re.MULTILINE)
